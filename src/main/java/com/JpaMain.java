@@ -61,6 +61,13 @@ public class JpaMain {
 
             System.out.println("findMember = " + findMember.getName()); // 하지만 이때는 DB에 접근을 한다. 그 이유는 name을 가져오기 위해서 DB에 접근을 해야하기 때문이다. 그래서 DB에 접근을 한다. 그래서 성능이 좋아지지 않는다.
 
+
+            Member m1 = em.find(Member.class, member1.getId());
+            Member m2 = em.getReference(Member.class, member2.getId());
+
+            System.out.println("(m1.getClass() == m2.getClass() ) = " + (m1.getClass() == m2.getClass()));
+            
+            
             tx.commit();
         } catch (Exception e) {
             tx.rollback();
